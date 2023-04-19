@@ -8,5 +8,11 @@ namespace Dominio
 {
     public class ActividadHostal:Actividad
     {
+        string personaResponsable;
+        string lugarEnHostel;
+        bool actividadAlAireLibre;
+        decimal descuentoParaTodaActividadDeHostal;
+
+
     }
 }

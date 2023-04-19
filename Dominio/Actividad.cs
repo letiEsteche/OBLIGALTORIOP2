@@ -9,7 +9,7 @@ namespace Dominio
     public class Actividad
     {
         //ATRIBUTOS
-        static int ultimoNumero = 0;
+        static int ultimoNumero = 1;
         int idActividad;
         string? nombreActividad;
         string? descripcionActividad;
@@ -17,6 +17,7 @@ namespace Dominio
         int cantMaxPersonas;
         int edadMinimaParaActividad;
         decimal costoPorPersona;
+        int cuposDisponibles;
         
         List<Agenda> agendas = new List<Agenda>();
 
@@ -29,13 +30,14 @@ namespace Dominio
         public int CantMaxPersonas { get => cantMaxPersonas; set => cantMaxPersonas = value; }
         public int EdadMinimaParaActividad { get => edadMinimaParaActividad; set => edadMinimaParaActividad = value; }
         public decimal CostoPorPersona { get => costoPorPersona; set => costoPorPersona = value; }
-        
+        public int CuposDisponibles { get => cuposDisponibles; set => cuposDisponibles = value; }
+
 
         //CONSTRUCTORES
 
         public Actividad() { }
 
-        public Actividad(string nombreActividad, string descripcionActividad, DateTime fechaDeActividad, int cantMaxPersonas, int edadMinimaParaActividad) 
+        public Actividad(string nombreActividad, string descripcionActividad, DateTime fechaDeActividad, int cantMaxPersonas, int edadMinimaParaActividad, decimal costoPorPersona) 
         {
             this.idActividad = ultimoNumero++;
             this.nombreActividad = nombreActividad;
@@ -43,6 +45,8 @@ namespace Dominio
             this.fechaDeActividad = fechaDeActividad;
             this.cantMaxPersonas = cantMaxPersonas;
             this.edadMinimaParaActividad = edadMinimaParaActividad;
+            this.costoPorPersona = costoPorPersona;
+            this.cuposDisponibles = cantMaxPersonas;
             
         }
 
@@ -89,8 +93,27 @@ namespace Dominio
             {
                 return true;
             }
+            else
+            {
+                return false;
+            }
+        }
 
-            return false;
+        public bool VerificarSiHayCuposLibres()
+        {
+            if (this.cuposDisponibles > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void RestarCupoDeCupoDisponible()
+        {
+            this.cuposDisponibles--;
         }
 
     }

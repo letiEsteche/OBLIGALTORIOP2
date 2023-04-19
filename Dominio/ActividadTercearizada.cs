@@ -8,6 +8,9 @@ namespace Dominio
 {
     public class ActividadTercearizada:Actividad
     {
-        
+        bool confirmadaPorEmpresa;
+        DateTime fechaConfirmacion;
+
+
     }
 }

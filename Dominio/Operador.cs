@@ -9,26 +9,60 @@ namespace Dominio
     public class Operador
     {
         private static int ultimoNumero = 0;
-        int idActividad;
-        string emailOperador;
-        string contraseñaOperador;
+        int idUsuario;
+        string email;
+        string contraseña;
 
         public static int UltimoNumero { get => ultimoNumero; }
-        public string EmailOperador { get => emailOperador; set => emailOperador = value; }
-        public string ContraseñaOperador { get => contraseñaOperador; set => contraseñaOperador = value; }
-        public int IdActividad { get => idActividad; set => idActividad = value; }
+        public string Email { get => email; set => email = value; }
+        public string Contraseña { get => contraseña; set => contraseña = value; }
+        public int IdUsuario { get => idUsuario; set => idUsuario = value; }
 
         public Operador() { }
 
-        public Operador(string emailOperador, string contraseñaOperador)
+        public Operador(string email, string contraseña)
         {
-            this.idActividad = ultimoNumero++;
-            this.emailOperador = emailOperador;
-            this.contraseñaOperador = contraseñaOperador;
-           
+            this.idUsuario = ultimoNumero++;
+            this.email = email;
+            this.contraseña = contraseña;
+
         }
 
 
+
+        public void Validar()
+        {
+            try
+            {
+                ValidarEmail();
+                ValidarContraseña();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrio un error: " + ex.Message);
+            }
+            
+        }
+
+
+        // validar que mail contenga @ pero no sea al principio y al final
+        private void ValidarEmail()
+        {
+            if (!(this.email.Contains("@")) || this.email.StartsWith("@") || this.email.EndsWith("@"))
+            {
+                
+                throw new Exception("Email inválido");
+            }
+        }
+
+        //validar contraseña
+        private void ValidarContraseña()
+        {
+            if (!(this.contraseña.Length > 8))
+            {
+                throw new Exception("Contraseña inválida");
+            }
+        }
 
     }
 

@@ -1,6 +1,7 @@
 ﻿namespace Consola
 {
-   
+    using Dominio;
+    
     public class Program
     {
         static void Main(string[] args)
@@ -10,6 +11,17 @@
 
             do
             {
+                /*Operador operador = new Operador("juancarlos", "passwo");   -----> ejemplo para probar
+                operador.Validar();
+                Console.WriteLine(operador.Email);
+                Console.WriteLine(operador.Contraseña);
+
+
+                // Si vamo a testear un objeto que requiere otros objetos, tenemos que instanciarlos primero
+                Actividad actividad = new Actividad("", "");
+                Huesped huesped = new Huesped("carlos");
+                Agenda agenda = new Agenda (huesped, actividad)*/
+
                 Menu(opciones);
                 opcion = LeerNumero();
                 switch (opcion)
