@@ -9,44 +9,24 @@
         static void Main(string[] args)
         {
             int opcion = 0;
-            string[] opciones = { "Alta de huesped", "Listar todas las actividades", "Listar todos los proveedores","Listar Huesped" };
+            string[] opciones = { "Alta de huesped", "Listar todas las actividades", "Listar todos los proveedores","Listar Huesped", "Listar Actividades" };
 
+
+            //Operador operador = new Operador("juancarlos", "passwo");
+            //operador.Validar();
+            //Console.WriteLine(operador.Email);
+
+
+
+
+            /* Si vamo a testear un objeto que requiere otros objetos, tenemos que instanciarlos primero
+            Actividad actividad = new Actividad("", "");
+            Huesped huesped = new Huesped("carlos");
+            Agenda agenda = new Agenda (huesped, actividad)*/
             do
             {
-                //Operador operador = new Operador("juancarlos", "passwo");
-                //operador.Validar();
-                //Console.WriteLine(operador.Email);
-
-
-
-
-                /* Si vamo a testear un objeto que requiere otros objetos, tenemos que instanciarlos primero
-                Actividad actividad = new Actividad("", "");
-                Huesped huesped = new Huesped("carlos");
-                Agenda agenda = new Agenda (huesped, actividad)*/
-
-
-
-                //Huesped huesped = new Huesped(Huesped.TipoDocumento.CI, "48923692", "rosa", "rodriguez", "a202", new DateTime(2000, 01, 21), Huesped.Fidelizacion.NIVEL1, "ss@asdf", "123456");
-               
-                
-                //huesped.ValidarHuesped();
-                //Console.WriteLine(huesped.NombreHuesped);
-                //Console.WriteLine(huesped.Documento);
-                //Console.WriteLine(huesped.ApellidoHuesped);
-                //Console.WriteLine(huesped.HabitacionHuesped);
-                //Console.WriteLine(huesped.FechaNacimiento);
-                //Console.WriteLine(huesped.NroFidelizacion);
-
-
-
-
-
-
-
-
-
                 Menu(opciones);
+               
                 opcion = LeerNumero();
                 switch (opcion)
                 {
@@ -62,6 +42,9 @@
                     case 4:
                         ListarHuesped();
                         break;
+                    case 5: 
+                        ListarActividades();
+                        break;
                 }
             } while (opcion != 0);
 
@@ -71,13 +54,14 @@
         static void Menu(string[] opciones)
         {
             int numero = 1;
-            //Console.Clear();
+           
             Console.WriteLine("Ingrese una de las siguientes opciones (0 para terminar)");
             foreach (string opcion in opciones)
             {
                 Console.WriteLine($"{numero} - {opcion} ");
                 numero++;
             }
+            
         }
 
         static int LeerNumero()
@@ -243,6 +227,7 @@
                 Console.WriteLine(unP.ToString());
             }
             Console.ReadLine();
+           
         }
 
 
@@ -255,6 +240,18 @@
                 Console.WriteLine(unH.ToString());
             }
             Console.ReadLine();
+           
+        }
+
+        static public void ListarActividades()
+        {
+            Sistema unS = Sistema.Instancia;
+            foreach (Actividad unA in unS.Actividades)
+            {
+                Console.WriteLine(unA.ToString());
+            }
+            Console.ReadLine();
+
         }
 
 

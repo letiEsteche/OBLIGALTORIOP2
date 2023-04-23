@@ -41,23 +41,15 @@ namespace Dominio
             this.NroFidelizacion = nroFidelizacion;
 
         }
+
+        //VERIFICACIONES
         public void ValidarHuesped()
         {
-            try
-            {
-                VerificarNombreHuesped();
-                VerificarApellidoHuesped();
-                VerificarHabitacion();
-                VerificarCedulaValida();
 
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine("Ocurrio un error: " + ex.Message);
-            }
-
-
+            VerificarNombreHuesped();
+            VerificarApellidoHuesped();
+            VerificarHabitacion();
+            VerificarCedulaValida();
 
         }
 
@@ -93,14 +85,14 @@ namespace Dominio
             }
         }
 
-        private void VerificarDocumentoUnico()
+        /*private void VerificarDocumentoUnico()
         {
-            if (!(true))
+            if (!(TipoDocyNumeroRepetido()))
             {
                 throw new Exception("Documento ya existente");
             }
 
-        }
+        }*/
 
         //VALIDAR CEDULA
         private bool ComprobarCI(string? cedula)
@@ -127,8 +119,6 @@ namespace Dominio
             for (int i = 0; i < coeficientes.Length; i++)
             {
                 suma += coeficientes[i] * int.Parse(cedulaArray[i].ToString());
-
-
             }
 
             int resto = suma % 10;
@@ -139,22 +129,43 @@ namespace Dominio
                 verificador = 10 - resto;
             }
 
-            
+
             return verificador == int.Parse(cedulaArray[7].ToString());
         }
 
-        public override bool Equals(object? obj)
+        /*public override bool Equals(object? obj)
         {
-            Huesped nroDoc = obj as Huesped;
-            
-            if(nroDoc != null)
+            Huesped? nroDocYTipo = obj as Huesped;
+
+            if (nroDocYTipo == null) return false;
+
+            return this.numeroDocumento.Equals(nroDocYTipo.numeroDocumento);
+
+        }
+
+        //comparamos tipo y documento de huesped 
+        public int CompareTo(Huesped unHuesped)
+          {
+
+            int resultado = this.Documento.CompareTo(unHuesped.Documento);
+            if (resultado == 0)
+            {
+                resultado = this.NumeroDocumento.CompareTo(unHuesped.NumeroDocumento);
+
+            }
+            return resultado;
+          }
+        // retorna un bool cuando el tipo de documento y documento son iguales
+        public bool TipoDocyNumeroRepetido(Huesped nuevoHuesped)
+        {
+            if (CompareTo(nuevoHuesped) == 0)
             {
                 return false;
             }
+            return true;
+        }*/
 
-            return this.numeroDocumento.Equals(nroDoc.numeroDocumento);
-           
-        }
+
 
 
         //esto tiene que ir
@@ -163,10 +174,12 @@ namespace Dominio
             return this.numeroDocumento.GetHashCode();
         }
 
+
         //mostrar huesped AGREGAR LOS DEMAS ATRIBUTOS
         public override string ToString()
         {
-            return $"Huesped {this.Documento}, numero {this.NumeroDocumento}, nombre {this.nombreHuesped} y apellido {this.apellidoHuesped}";
+            return $"Huesped  {this.Documento} {this.NumeroDocumento}, Nombre {this.nombreHuesped} {this.apellidoHuesped}, Habitacion {habitacionHuesped}, Fecha nacimiento {fechaNacimiento.ToShortDateString()}, Fidelizacion {nroFidelizacion}";
+
         }
 
 

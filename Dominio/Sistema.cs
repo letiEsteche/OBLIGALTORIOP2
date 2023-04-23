@@ -47,6 +47,7 @@ namespace Dominio
             AltaProveedor(new Proveedor("Gimenez S.R.L.", "29001010", "Andes 1190", 7));
             AltaProveedor(new Proveedor("", "22041120", "Agraciada 2512 Apto. 1", 8));
             AltaProveedor(new Proveedor("Norberto Molina", "22001189", "Paraguay 2100", 9));
+            AltaProveedor(new Proveedor("Norberto Molina", "22001189", "uruguay", 9));
 
             AltaHuesped(new Huesped(Huesped.TipoDocumento.CI, "42970570", "Ana", "Gomez", "204",new DateTime(2023, 01, 21), Huesped.Fidelizacion.NIVEL1, "ss@asdf", "123456"));
             AltaHuesped(new Huesped(Huesped.TipoDocumento.PASAPORTE, "48923692", "rosa", "rodriguez", "a202", new DateTime(2024, 01, 21), Huesped.Fidelizacion.NIVEL2, "ss@asdf", "123456"));
@@ -54,19 +55,14 @@ namespace Dominio
             AltaHuesped(new Huesped(Huesped.TipoDocumento.CI, "12345688", "rosa", "rodriguez", "a202", new DateTime(2025, 01, 21), Huesped.Fidelizacion.NIVEL4, "ss@asdf", "123456"));
             AltaHuesped(new Huesped(Huesped.TipoDocumento.PASAPORTE, "12345694", "Ana", "Gomez", "204", new DateTime(2023, 12, 21), Huesped.Fidelizacion.NIVEL1, "ss@asdf", "123456"));
             AltaHuesped(new Huesped(Huesped.TipoDocumento.OTROS, "12345616", "rosa", "rodriguez", "a202", new DateTime(2024, 02, 21), Huesped.Fidelizacion.NIVEL2, "ss@asdf", "123456"));
+            AltaHuesped(new Huesped(Huesped.TipoDocumento.OTROS, "12345616", "rosa", "rodriguez", "a202", new DateTime(2024, 02, 21), Huesped.Fidelizacion.NIVEL2, "ss@asdf", "123456"));
+
+            AltaActividadHostal(new ActividadHostal("Rosa", "comedor", true, "Juego de mesa", "jugar", new DateTime(2024,02,02),10, 18,1000));
 
 
         }
 
-        //verifico si el proveedor ya existe en la lista.
-        public void VerificarProveedorNoExiste(Proveedor proveedor)
-        {
-            if (Proveedores.Contains(proveedor))
-            {
-                throw new Exception("Proveedor ya existe");
-            }
-        }
-
+      
         //alta de proveedor para que cargue con la precarga que dio el profesor
         public void AltaProveedor(Proveedor proveedor)
         {
@@ -84,11 +80,11 @@ namespace Dominio
             catch (Exception ex)
             {
 
-                throw ex;// mensaje de error
+                Console.WriteLine("Ocurrio un error" + ex.Message);
             }
         }
 
-
+        //alta de huesped con precarga 
         public void AltaHuesped(Huesped huesped)
         {
             try
@@ -105,11 +101,44 @@ namespace Dominio
             catch (Exception ex)
             {
 
-                throw ex;// mensaje de error
+                Console.WriteLine("Ocurrio un error" + ex.Message);
+
+            }
+        }
+
+        //alta de actividades del hostal
+
+        public void AltaActividadHostal(Actividad actividades)
+        {
+            try
+            {
+                Actividades.Add(actividades);
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Ocurrio un error" + ex.Message);
+
+            }
+
+        }
+
+
+
+
+
+        //verifico si el proveedor ya existe en la lista.
+        public void VerificarProveedorNoExiste(Proveedor proveedor)
+        {
+            if (Proveedores.Contains(proveedor))
+            {
+                throw new Exception("Proveedor ya existe");
             }
         }
 
         //verificar si ya existe huesped
+
+
 
         public void VerificarHuespedNoExiste(Huesped huespedNew)
         {
@@ -119,6 +148,7 @@ namespace Dominio
             }
         }
 
+       
 
 
     }

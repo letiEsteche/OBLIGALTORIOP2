@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Actividad
+    public abstract class Actividad
     {
         //ATRIBUTOS
         static int ultimoNumero = 1;
@@ -114,6 +114,11 @@ namespace Dominio
         public void RestarCupoDeCupoDisponible()
         {
             this.cuposDisponibles--;
+        }
+
+        public override string ToString()
+        {
+            return $"{this.idActividad} {this.nombreActividad}";
         }
 
     }
