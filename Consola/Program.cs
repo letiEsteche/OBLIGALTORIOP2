@@ -1,36 +1,66 @@
 ﻿namespace Consola
 {
     using Dominio;
-    
+    using System.Globalization;
+    using System.Threading.Channels;
+
     public class Program
     {
         static void Main(string[] args)
         {
             int opcion = 0;
-            string[] opciones = { "Alta de huesped", "Listar todas las actividades", "Listar todos los proveedores", };
+            string[] opciones = { "Alta de huesped", "Listar todas las actividades", "Listar todos los proveedores","Listar Huesped" };
 
             do
             {
-                /*Operador operador = new Operador("juancarlos", "passwo");   -----> ejemplo para probar
-                operador.Validar();
-                Console.WriteLine(operador.Email);
-                Console.WriteLine(operador.Contraseña);
+                //Operador operador = new Operador("juancarlos", "passwo");
+                //operador.Validar();
+                //Console.WriteLine(operador.Email);
 
 
-                // Si vamo a testear un objeto que requiere otros objetos, tenemos que instanciarlos primero
+
+
+                /* Si vamo a testear un objeto que requiere otros objetos, tenemos que instanciarlos primero
                 Actividad actividad = new Actividad("", "");
                 Huesped huesped = new Huesped("carlos");
                 Agenda agenda = new Agenda (huesped, actividad)*/
+
+
+
+                //Huesped huesped = new Huesped(Huesped.TipoDocumento.CI, "48923692", "rosa", "rodriguez", "a202", new DateTime(2000, 01, 21), Huesped.Fidelizacion.NIVEL1, "ss@asdf", "123456");
+               
+                
+                //huesped.ValidarHuesped();
+                //Console.WriteLine(huesped.NombreHuesped);
+                //Console.WriteLine(huesped.Documento);
+                //Console.WriteLine(huesped.ApellidoHuesped);
+                //Console.WriteLine(huesped.HabitacionHuesped);
+                //Console.WriteLine(huesped.FechaNacimiento);
+                //Console.WriteLine(huesped.NroFidelizacion);
+
+
+
+
+
+
+
+
 
                 Menu(opciones);
                 opcion = LeerNumero();
                 switch (opcion)
                 {
                     case 1:
-                        //AltaDeHuesped;
+                        AltaHuesped();
                         break;
                     case 2:
                         //ListarTodasLasActividades;
+                        break;
+                    case 3:
+                        ListarProveedores();
+                        break;
+                    case 4:
+                        ListarHuesped();
                         break;
                 }
             } while (opcion != 0);
@@ -41,7 +71,7 @@
         static void Menu(string[] opciones)
         {
             int numero = 1;
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("Ingrese una de las siguientes opciones (0 para terminar)");
             foreach (string opcion in opciones)
             {
@@ -62,7 +92,170 @@
             return opcion;
         }
 
+        static void AltaHuesped()
+        {
+            Sistema unHues = Sistema.Instancia;
+            try
+            {
+                Huesped.TipoDocumento tipoDoc = PedirTipoDoc("Ingrese tipo de docmuento: CI, PASSAPORTE U OTROS");
+                string? nroDoc = PedirTexto("Ingrese numero de documento:");
+                string? nombre = PedirTexto("Ingrese nombre:");
+                string? apellido = PedirTexto("Ingrese apellido:");
+                string? habitacion = PedirTexto("Ingrese habitación:");
+                DateTime fechaNac = PedirFecha("Ingrese fecha de nacimiento:");
+                Huesped.Fidelizacion fidel = PedirFidel("Ingrese nivel de fidelización: NIVEL1, NIVEL2, NIVEL3 o NIVEL4");
+                string? email = PedirTexto("Ingrese mail:");
+                string? pass = PedirTexto("Ingrese contraseña");
 
+
+
+                unHues.AltaHuesped(new Huesped(tipoDoc, nroDoc, nombre, apellido, habitacion, fechaNac, fidel, email, pass));
+                MensajeConfirmacion("Se ingresó el cliente correctamente");
+            }
+            catch (Exception ex)
+            {
+                MensajeError(ex.Message);
+            }
+        }
+
+
+        //Metodo para poder ingresar ociones del menú
+        static string? PedirTexto(string mensaje = "Ingrese número.")
+        {
+            bool exito;
+            string? valor;
+            do
+            {
+                Console.Write(mensaje);
+                valor = Console.ReadLine();
+                if (valor == null)
+                {
+                    MensajeError("No se ha ingresado nada");
+                    exito = false;
+                }
+                else
+                {
+                    exito = true;
+                }
+
+            } while (!exito);
+            return valor;
+        }
+
+
+        //metodo para ingresar fecha en el menu
+        public static DateTime PedirFecha(string mensaje = "Ingrese fecha.")
+        {
+            DateTime fecha;
+            bool exito;
+            do
+            {
+                Console.Write(mensaje);
+                exito = DateTime.TryParse(Console.ReadLine(), out fecha);
+                if (!exito)
+                {
+                    Console.WriteLine("Fecha con error en el formato");
+                }
+
+            } while (!exito);
+
+            return fecha;
+        }
+
+        //Metodo para pedir y guardar opcion de enum Tipo de documento
+       static Huesped.TipoDocumento PedirTipoDoc(string mensaje = "Ingresar tipo:")
+        {
+            bool exito;
+
+            Huesped.TipoDocumento valor;
+
+            do
+            {
+                Console.Write(mensaje);
+                exito = Enum.TryParse(Console.ReadLine(), out valor);
+                if (!exito)
+                {
+                    MensajeError("No es un tipo");
+                   
+                }
+                else
+                {
+                    exito = true;
+                }
+
+            } while (!exito);
+
+            return valor;
+        }
+
+        //Metodo para pedir y guardar opcion de enum Fidelizacion
+        static Huesped.Fidelizacion PedirFidel(string mensaje = "Ingresar Fidelización")
+        {
+            bool exito;
+
+            Huesped.Fidelizacion valor;
+
+            do
+            {
+                Console.Write(mensaje);
+                exito = Enum.TryParse(Console.ReadLine(), out valor);
+                if (!exito)
+                {
+                    MensajeError("No es un nivel");
+
+                }
+                else
+                {
+                    exito = true;
+                }
+
+            } while (!exito);
+
+            return valor;
+        }
+
+        //MENSAJES DE ERROR Y CONFIRMACION PARA UTILIZAR
+        static void MensajeError(string mensaje)
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine($"---Error----> {mensaje}");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ReadLine();
+        }
+        static void MensajeConfirmacion(string mensaje)
+        {
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine($"---Confirmado----> {mensaje}");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadLine();
+        }
+
+
+
+        //listar los proveedores
+        static public void ListarProveedores()
+        {
+            Sistema unS = Sistema.Instancia;
+            foreach (Proveedor unP in unS.Proveedores)
+            {
+                Console.WriteLine(unP.ToString());
+            }
+            Console.ReadLine();
+        }
+
+
+        //listar los huespedes
+        static public void ListarHuesped()
+        {
+            Sistema unS = Sistema.Instancia;
+            foreach (Huesped unH in unS.Huespedes)
+            {
+                Console.WriteLine(unH.ToString());
+            }
+            Console.ReadLine();
+        }
 
 
     }

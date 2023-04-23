@@ -10,12 +10,12 @@ namespace Dominio
     {
         private static int ultimoNumero = 0;
         int idUsuario;
-        string email;
-        string contraseña;
+        string? email;
+        string? contraseña;
 
         public static int UltimoNumero { get => ultimoNumero; }
-        public string Email { get => email; set => email = value; }
-        public string Contraseña { get => contraseña; set => contraseña = value; }
+        public string? Email { get => email; set => email = value; }
+        public string? Contraseña { get => contraseña; set => contraseña = value; }
         public int IdUsuario { get => idUsuario; set => idUsuario = value; }
 
         public Operador() { }
