@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Dominio
@@ -52,7 +53,7 @@ namespace Dominio
 
         //VALIDACIONES
 
-        public void Validar()
+        public virtual void ValidarActividad()
         {
             ValidarNombreActividad();
             ValidarDescripcionActividad();
@@ -86,18 +87,7 @@ namespace Dominio
         }
 
 
-        //las actividades tienen un costo sino se cuenta con esto es gratuita
-        private bool CostoDeLaActividad()
-        {
-            if (this.costoPorPersona > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+       
 
         public bool VerificarSiHayCuposLibres()
         {
@@ -118,7 +108,16 @@ namespace Dominio
 
         public override string ToString()
         {
-            return $"{this.idActividad} {this.nombreActividad}";
+            string? mensajeCostoDeActividad = "";
+            if(this.costoPorPersona == 0)
+            {
+                mensajeCostoDeActividad = "Gratuita";
+            }
+            else
+            {
+                mensajeCostoDeActividad = $"{this.costoPorPersona}";
+            }
+            return $" {this.idActividad} Nombre: {this.nombreActividad} Descripcion: {this.descripcionActividad} Fecha: {this.fechaDeActividad.ToShortDateString()} MAX Personas: {this.cantMaxPersonas} Edad minima{this.edadMinimaParaActividad} Costo:{mensajeCostoDeActividad} Cupos Disponibles {this.cuposDisponibles}";
         }
 
     }

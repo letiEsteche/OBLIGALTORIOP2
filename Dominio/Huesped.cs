@@ -20,6 +20,8 @@ namespace Dominio
         DateTime fechaNacimiento;
         Fidelizacion nroFidelizacion;
 
+
+
         public TipoDocumento Documento { get => documento; set => documento = value; }
         public string? NumeroDocumento { get => numeroDocumento; set => numeroDocumento = value; }
         public string? NombreHuesped { get => nombreHuesped; set => nombreHuesped = value; }
@@ -85,14 +87,7 @@ namespace Dominio
             }
         }
 
-        /*private void VerificarDocumentoUnico()
-        {
-            if (!(TipoDocyNumeroRepetido()))
-            {
-                throw new Exception("Documento ya existente");
-            }
-
-        }*/
+       
 
         //VALIDAR CEDULA
         private bool ComprobarCI(string? cedula)
@@ -133,15 +128,18 @@ namespace Dominio
             return verificador == int.Parse(cedulaArray[7].ToString());
         }
 
-        /*public override bool Equals(object? obj)
+
+        //Esto es para poder usar contains
+        public override bool Equals(object? obj)
         {
-            Huesped? nroDocYTipo = obj as Huesped;
+            Huesped? huesped = obj as Huesped;
 
-            if (nroDocYTipo == null) return false;
+            if (huesped == null) return false;
 
-            return this.numeroDocumento.Equals(nroDocYTipo.numeroDocumento);
+            return this.numeroDocumento.Equals(huesped.numeroDocumento) && this.documento.Equals(huesped.documento);
 
         }
+        /*
 
         //comparamos tipo y documento de huesped 
         public int CompareTo(Huesped unHuesped)

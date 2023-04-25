@@ -41,7 +41,8 @@ namespace Dominio
 
         #region Métodos
 
-        
+        // agenda va a tener un huesped y una actividad
+
 
         #endregion
 

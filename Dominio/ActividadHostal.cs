@@ -8,29 +8,30 @@ namespace Dominio
 {
     public class ActividadHostal : Actividad
     {
+        public enum UbicacionActividad {AIRE_LIBRE, INTERIOR };
         string personaResponsable;
         string lugarEnHostel;
-        bool actividadAlAireLibre;
-        
+        UbicacionActividad dondeEsActividad;
 
 
 
         public string PersonaResponsable { get => personaResponsable; set => personaResponsable = value; }
         public string LugarEnHostel { get => lugarEnHostel; set => lugarEnHostel = value; }
-        public bool ActividadAlAireLibre { get => actividadAlAireLibre; set => actividadAlAireLibre = value; }
-       
+        public UbicacionActividad DondeEsActividad { get => dondeEsActividad; set => dondeEsActividad = value; }
 
-        public ActividadHostal(string personaResponsable, string lugarEnHostel, bool actividadAlAireLibre, string nombreActividad, string descripcionActividad, DateTime fechaDeActividad, int cantMaxPersonas, int edadMinimaParaActividad, decimal costoPorPersona): base (nombreActividad, descripcionActividad, fechaDeActividad, cantMaxPersonas, edadMinimaParaActividad, costoPorPersona)
+        public ActividadHostal(string personaResponsable, string lugarEnHostel, UbicacionActividad dondeEsActividad, string nombreActividad, string descripcionActividad, DateTime fechaDeActividad, int cantMaxPersonas, int edadMinimaParaActividad, decimal costoPorPersona): base (nombreActividad, descripcionActividad, fechaDeActividad, cantMaxPersonas, edadMinimaParaActividad, costoPorPersona)
         {
             this.personaResponsable = personaResponsable;
             this.lugarEnHostel = lugarEnHostel;
-            this.actividadAlAireLibre = actividadAlAireLibre;
+            this.dondeEsActividad = dondeEsActividad;
+             
           
         }
 
-        public void ValidarActividadHuesped()
+        public override void ValidarActividad()
         {
-            ValidarNombre();
+            base.ValidarActividad(); //llama a la validacion de actividad
+            ValidarNombre(); //llama a validacion de hostal
         }
 
 
@@ -41,6 +42,8 @@ namespace Dominio
                 throw new Exception("Nombre no puede ser nulo.");
             }
         }
+
+      
 
         //descuento de hostal que le corresponde a cada huesped segun su fidelizacion
         public decimal DescuentoHostal(string nivelHuesped)
@@ -60,6 +63,15 @@ namespace Dominio
             }
 
             return descuento;
+        }
+
+
+
+
+        public override string ToString()
+        {
+
+            return base.ToString() + $" Responsable: {this.personaResponsable} Lugar: {this.lugarEnHostel} {this.dondeEsActividad}";
         }
 
     }

@@ -9,7 +9,7 @@
         static void Main(string[] args)
         {
             int opcion = 0;
-            string[] opciones = { "Alta de huesped", "Listar todas las actividades", "Listar todos los proveedores","Listar Huesped", "Listar Actividades" };
+            string[] opciones = { "Alta de huesped", "Listar todas las actividades", "Listar todos los proveedores","Listar Huesped"};
 
 
             //Operador operador = new Operador("juancarlos", "passwo");
@@ -34,7 +34,7 @@
                         AltaHuesped();
                         break;
                     case 2:
-                        //ListarTodasLasActividades;
+                        ListarActividades();
                         break;
                     case 3:
                         ListarProveedores();
@@ -42,9 +42,8 @@
                     case 4:
                         ListarHuesped();
                         break;
-                    case 5: 
-                        ListarActividades();
-                        break;
+                   
+                       
                 }
             } while (opcion != 0);
 
@@ -216,7 +215,7 @@
             Console.ReadLine();
         }
 
-
+//-------------------LISTAR----------------------------------------------
 
         //listar los proveedores
         static public void ListarProveedores()
@@ -240,9 +239,11 @@
                 Console.WriteLine(unH.ToString());
             }
             Console.ReadLine();
+
            
         }
 
+        //listar actividades
         static public void ListarActividades()
         {
             Sistema unS = Sistema.Instancia;

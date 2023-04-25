@@ -57,12 +57,39 @@ namespace Dominio
             AltaHuesped(new Huesped(Huesped.TipoDocumento.OTROS, "12345616", "rosa", "rodriguez", "a202", new DateTime(2024, 02, 21), Huesped.Fidelizacion.NIVEL2, "ss@asdf", "123456"));
             AltaHuesped(new Huesped(Huesped.TipoDocumento.OTROS, "12345616", "rosa", "rodriguez", "a202", new DateTime(2024, 02, 21), Huesped.Fidelizacion.NIVEL2, "ss@asdf", "123456"));
 
-            AltaActividadHostal(new ActividadHostal("Rosa", "comedor", true, "Juego de mesa", "jugar", new DateTime(2024,02,02),10, 18,1000));
+            AltaActividadHostal(new ActividadHostal("Rosa", "comedor", ActividadHostal.UbicacionActividad.INTERIOR, "Comida china", "Aprender recetas de comida china", new DateTime(2024,02,02), 10, 18,0));
+            AltaActividadHostal(new ActividadHostal("Karen", "jardín", ActividadHostal.UbicacionActividad.AIRE_LIBRE, "Yoga", "Hacer ejercicios de Yoga Kundalini", new DateTime(2024, 02, 02), 10, 18,0));
+            AltaActividadHostal(new ActividadHostal("Juan", "playa", ActividadHostal.UbicacionActividad.AIRE_LIBRE, "Tenis", "Campeonato de tenis en equipos", new DateTime(2024, 02, 02), 10, 18, 1000));
+            AltaActividadHostal(new ActividadHostal("Santiago", "gimnasio", ActividadHostal.UbicacionActividad.INTERIOR, "Spinnin", "Clases de Spinnin", new DateTime(2024, 02, 02), 10, 18, 1000));
+            AltaActividadHostal(new ActividadHostal("Karen", "gimnasio", ActividadHostal.UbicacionActividad.INTERIOR, "Yoga", "Clase Yoga Kundalini", new DateTime(2024, 02, 02), 10, 18, 1000));
+            AltaActividadHostal(new ActividadHostal("Juan", "sala de juegos", ActividadHostal.UbicacionActividad.INTERIOR, "Lotería", "Jugar a la lotaría", new DateTime(2024, 02, 02), 10, 18, 1000));
+            AltaActividadHostal(new ActividadHostal("Santiago", "plaza", ActividadHostal.UbicacionActividad.AIRE_LIBRE, "Tejo", "Campeonato de tejo en parejas", new DateTime(2024, 02, 02), 10, 18, 1000));
+            AltaActividadHostal(new ActividadHostal("Richard", "playa", ActividadHostal.UbicacionActividad.AIRE_LIBRE, "Pájaros", "Observación de áves autoctonas", new DateTime(2024, 02, 02), 10, 18, 1000));
+            AltaActividadHostal(new ActividadHostal("Susana", "comedor", ActividadHostal.UbicacionActividad.INTERIOR, "Comida Mexicana", "Aprender recetas de comida mexicana", new DateTime(2024, 02, 02), 10, 18, 1000));
+            AltaActividadHostal(new ActividadHostal("Juan", "jardín", ActividadHostal.UbicacionActividad.AIRE_LIBRE, "Juego de mesa", "Campeonato de Truco", new DateTime(2024, 02, 02), 10, 18, 1000));
+            AltaActividadHostal(new ActividadHostal("Juan", "jardín", ActividadHostal.UbicacionActividad.AIRE_LIBRE, "Juego de mesa", "Campeonato de Ajedrez", new DateTime(2024, 02, 02), 10, 18, 1000));
+
+
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[0], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Juego de mesa", "Jugar cartas", new DateTime(2022, 06, 01), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[0], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Juego de mesa", "Jugar ajedrez", new DateTime(2022, 06, 02), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[0], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Juego de mesa", "Jugar damas", new DateTime(2022, 06, 03), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[1], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Bailes", "Zumba", new DateTime(2022, 06, 12), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[1], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Bailes", "Tango", new DateTime(2022, 06, 22), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[1], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Bailes", "Salsa", new DateTime(2022, 06, 30), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[2], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Gimansia", "Correr", new DateTime(2022, 06, 13), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[2], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Gimnasia", "Saltar", new DateTime(2022, 06, 09), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[2], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Gimnasia", "Caminar", new DateTime(2022, 06, 01), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[3], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Juego de mesa", "Jugar poker", new DateTime(2022, 06, 0), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[3], ActividadTercearizada.ConfirmaEmpresa.NO, new DateTime(), "", "Jugar", new DateTime(2022, 06, 02), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[4], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Juego de mesa", "Jugar", new DateTime(2022, 06, 22), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[4], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Escalar", "Escalar de dia", new DateTime(2022, 06, 12), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[4], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Escalar", "Escalar de noche", new DateTime(2022, 06, 07), 10, 18, 1000));
+            AltaActividadTercerizada(new ActividadTercearizada(proveedores[4], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2022, 01, 01), "Escalar", "Escalar y caminar ", new DateTime(2022, 07, 11), 10, 18, 1000));
 
 
         }
 
-      
+
         //alta de proveedor para que cargue con la precarga que dio el profesor
         public void AltaProveedor(Proveedor proveedor)
         {
@@ -108,11 +135,17 @@ namespace Dominio
 
         //alta de actividades del hostal
 
-        public void AltaActividadHostal(Actividad actividades)
+        public void AltaActividadHostal(ActividadHostal actividad)
         {
             try
             {
-                Actividades.Add(actividades);
+                if (actividades == null)
+                {
+                    throw new Exception("Actividad nulo");
+                }
+                actividad.ValidarActividad();
+                //actividad.ValidarActividadHostal; ESTA VALDACION TOMA LAS VALIDACIONES DE TODO??
+                Actividades.Add(actividad);
             }
             catch (Exception ex)
             {
@@ -123,7 +156,23 @@ namespace Dominio
 
         }
 
+        public void AltaActividadTercerizada(ActividadTercearizada actividad)
+        {
+            try
+            {
+                if(actividad == null)
+                {
+                    throw new Exception("Actividad nula");
+                }
+                actividad.ValidarActividad();
+                Actividades.Add(actividad);
 
+            }
+            catch(Exception ex) 
+            {
+                Console.WriteLine("Ocurrio un error" + ex.Message);
+            }
+        }
 
 
 
@@ -137,8 +186,6 @@ namespace Dominio
         }
 
         //verificar si ya existe huesped
-
-
 
         public void VerificarHuespedNoExiste(Huesped huespedNew)
         {
