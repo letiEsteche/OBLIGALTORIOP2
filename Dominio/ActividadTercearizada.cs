@@ -17,10 +17,11 @@ namespace Dominio
         
         public DateTime FechaConfirmacion { get => fechaConfirmacion; set => fechaConfirmacion = value; }
         public ConfirmaEmpresa ConfirmacionEmpresa1 { get => confirmacionEmpresa; set => confirmacionEmpresa = value; }
+        public Proveedor Proveedor { get => proveedor; set => proveedor = value; }
 
         public ActividadTercearizada(Proveedor proveedor,  ConfirmaEmpresa confirmacionEmpresa, DateTime fechaConfirmacion, string nombreActividad, string descripcionActividad, DateTime fechaDeActividad, int cantMaxPersonas, int edadMinimaParaActividad, decimal costoPorPersona) : base(nombreActividad, descripcionActividad, fechaDeActividad, cantMaxPersonas, edadMinimaParaActividad, costoPorPersona)
         {
-            this.proveedor = proveedor;
+            this.Proveedor = proveedor;
             this.confirmacionEmpresa = confirmacionEmpresa;
             this.fechaConfirmacion = fechaConfirmacion;
 
@@ -28,17 +29,17 @@ namespace Dominio
 
         public override void ValidarActividad()
         {
-            base.ValidarActividad(); //llama a la validacion de actividad
+            base.ValidarActividad(); //llama a la validacion de actividad que es la BASE DE ACTIVIDAD TERCEARIZADA
            
         }
 
 
-        public override string ToString()
-        {
+        //public override string ToString()
+        //{
 
-            return base.ToString() + $" {this.confirmacionEmpresa} {this.fechaConfirmacion.ToShortDateString()} PROVEEDOR: { this.proveedor}";
+        //    return $" {this.confirmacionEmpresa} {this.fechaConfirmacion.ToShortDateString()} PROVEEDOR: { this.proveedor}";
 
-        }
+        //}
 
 
     }

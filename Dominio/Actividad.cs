@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public abstract class Actividad
+    public abstract class Actividad: IComparable<Actividad>
     {
         //ATRIBUTOS
         static int ultimoNumero = 1;
@@ -19,7 +19,7 @@ namespace Dominio
         int edadMinimaParaActividad;
         decimal costoPorPersona;
         int cuposDisponibles;
-        
+
         List<Agenda> agendas = new List<Agenda>();
 
         //PROPIEDADES
@@ -38,7 +38,7 @@ namespace Dominio
 
         public Actividad() { }
 
-        public Actividad(string nombreActividad, string descripcionActividad, DateTime fechaDeActividad, int cantMaxPersonas, int edadMinimaParaActividad, decimal costoPorPersona) 
+        public Actividad(string nombreActividad, string descripcionActividad, DateTime fechaDeActividad, int cantMaxPersonas, int edadMinimaParaActividad, decimal costoPorPersona)
         {
             this.idActividad = ultimoNumero++;
             this.nombreActividad = nombreActividad;
@@ -48,11 +48,11 @@ namespace Dominio
             this.edadMinimaParaActividad = edadMinimaParaActividad;
             this.costoPorPersona = costoPorPersona;
             this.cuposDisponibles = cantMaxPersonas;
-            
+
         }
 
         //VALIDACIONES
-
+        //virtual significa que puedo usar esta validacion en las hijas
         public virtual void ValidarActividad()
         {
             ValidarNombreActividad();
@@ -80,14 +80,14 @@ namespace Dominio
         //se puede llamar desde agenda?
         private void ValidarFecha()
         {
-            if (!(this.fechaDeActividad > DateTime.Today)) 
-            { 
+            if (!(this.fechaDeActividad > DateTime.Today))
+            {
                 throw new Exception("Fecha inválida");
             }
         }
 
 
-       
+
 
         public bool VerificarSiHayCuposLibres()
         {
@@ -108,17 +108,16 @@ namespace Dominio
 
         public override string ToString()
         {
-            string? mensajeCostoDeActividad = "";
-            if(this.costoPorPersona == 0)
-            {
-                mensajeCostoDeActividad = "Gratuita";
-            }
-            else
-            {
-                mensajeCostoDeActividad = $"{this.costoPorPersona}";
-            }
-            return $" {this.idActividad} Nombre: {this.nombreActividad} Descripcion: {this.descripcionActividad} Fecha: {this.fechaDeActividad.ToShortDateString()} MAX Personas: {this.cantMaxPersonas} Edad minima{this.edadMinimaParaActividad} Costo:{mensajeCostoDeActividad} Cupos Disponibles {this.cuposDisponibles}";
+          
+            return $" {this.idActividad} Nombre: {this.nombreActividad} Descripcion: {this.descripcionActividad} Fecha: {this.fechaDeActividad.ToShortDateString()} MAX Personas: {this.cantMaxPersonas} Edad minima: {this.edadMinimaParaActividad} Costo: {this.costoPorPersona}";
         }
+
+        //este comparTO me sirve para utilizar el sort en el orden por costo
+        public int CompareTo(Actividad actividad)
+        {
+            return this.costoPorPersona.CompareTo(actividad.costoPorPersona);
+        }
+
 
     }
 }

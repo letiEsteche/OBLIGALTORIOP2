@@ -139,32 +139,7 @@ namespace Dominio
             return this.numeroDocumento.Equals(huesped.numeroDocumento) && this.documento.Equals(huesped.documento);
 
         }
-        /*
-
-        //comparamos tipo y documento de huesped 
-        public int CompareTo(Huesped unHuesped)
-          {
-
-            int resultado = this.Documento.CompareTo(unHuesped.Documento);
-            if (resultado == 0)
-            {
-                resultado = this.NumeroDocumento.CompareTo(unHuesped.NumeroDocumento);
-
-            }
-            return resultado;
-          }
-        // retorna un bool cuando el tipo de documento y documento son iguales
-        public bool TipoDocyNumeroRepetido(Huesped nuevoHuesped)
-        {
-            if (CompareTo(nuevoHuesped) == 0)
-            {
-                return false;
-            }
-            return true;
-        }*/
-
-
-
+       
 
         //esto tiene que ir
         public override int GetHashCode()

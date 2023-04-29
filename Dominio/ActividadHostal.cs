@@ -30,7 +30,7 @@ namespace Dominio
 
         public override void ValidarActividad()
         {
-            base.ValidarActividad(); //llama a la validacion de actividad
+            base.ValidarActividad(); //llama a la validacion de actividad con el virtual que puse en Validacion Actividad
             ValidarNombre(); //llama a validacion de hostal
         }
 
@@ -68,11 +68,11 @@ namespace Dominio
 
 
 
-        public override string ToString()
-        {
+        //public override string ToString()
+        //{
 
-            return base.ToString() + $" Responsable: {this.personaResponsable} Lugar: {this.lugarEnHostel} {this.dondeEsActividad}";
-        }
+        //    return $" Responsable: {this.personaResponsable} Lugar: {this.lugarEnHostel} {this.dondeEsActividad}";
+        //}
 
     }
 }

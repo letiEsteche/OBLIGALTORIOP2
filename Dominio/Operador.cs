@@ -8,7 +8,7 @@ namespace Dominio
 {
     public class Operador
     {
-        private static int ultimoNumero = 0;
+        private static int ultimoNumero = 1;
         int idUsuario;
         string? email;
         string? contraseña;
@@ -32,7 +32,7 @@ namespace Dominio
 
 
 
-        public void Validar()
+        public void ValidarOperador()
         {
             try
             {
@@ -64,6 +64,11 @@ namespace Dominio
             {
                 throw new Exception("Contraseña inválida");
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{this.idUsuario} {this.email} {this.contraseña}";
         }
 
     }
