@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class ActividadHostal : Actividad, Validable
+    public class ActividadHostal : Actividad
     {
         public enum UbicacionActividad {AIRE_LIBRE, INTERIOR };
         string personaResponsable;

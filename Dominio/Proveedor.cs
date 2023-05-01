@@ -35,12 +35,9 @@ namespace Dominio
 
         public void Validar()
         {
-
             ValidarNombreProveedor();
             ValidarTelefono();
             ValidarDireccion();
-
-
         }
 
         private void ValidarNombreProveedor()

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class ActividadTercearizada:Actividad, Validable
+    public class ActividadTercearizada:Actividad
     {
         public enum ConfirmaEmpresa { SI, NO };
         Proveedor proveedor;
@@ -29,7 +29,7 @@ namespace Dominio
 
         public override void Validar()
         {
-            base.ValidarActividad(); //llama a la validacion de actividad que es la BASE DE ACTIVIDAD TERCEARIZADA
+            base.Validar(); //llama a la validacion de actividad que es la BASE DE ACTIVIDAD TERCEARIZADA
            
         }
 

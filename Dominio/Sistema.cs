@@ -17,8 +17,6 @@ namespace Dominio
         List<Operador> operadores = new List<Operador>();
         List<Huesped> huespedes = new List<Huesped>();
         List<string> erroresPrecarga = new List<string>(); //lista para guardar los errores de precarga
-
-
         
         //SINGLETON
         public static Sistema Instancia
