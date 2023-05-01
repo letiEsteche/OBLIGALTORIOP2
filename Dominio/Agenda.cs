@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Agenda
+    public class Agenda: Validable
     {
         #region Atributos
         public enum EstadoAgenda { PENDIENTE_PAGO, CONFIRMADA };
@@ -48,6 +48,11 @@ namespace Dominio
 
         // agenda va a tener un huesped y una actividad
 
+        //para esta entrega no se realizan validaciones de agenda
+        public void Validar()
+        {
+            return;
+        }
 
         #endregion
 

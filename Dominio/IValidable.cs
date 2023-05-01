@@ -1,0 +1,5 @@
+﻿interface Validable
+{
+    void Validar();
+
+}

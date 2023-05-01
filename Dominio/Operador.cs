@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Operador
+    public class Operador: Validable
     {
         private static int ultimoNumero = 1;
         int idUsuario;
@@ -32,7 +32,7 @@ namespace Dominio
 
 
 
-        public void ValidarOperador()
+        public void Validar()
         {
             try
             {
@@ -50,6 +50,7 @@ namespace Dominio
         // validar que mail contenga @ pero no sea al principio y al final
         private void ValidarEmail()
         {
+            //Validar: si el mail no contiene @, comienza con o finaliza con @, etnonces tirar la excepcion
             if (!(this.email.Contains("@")) || this.email.StartsWith("@") || this.email.EndsWith("@"))
             {
                 
@@ -57,7 +58,7 @@ namespace Dominio
             }
         }
 
-        //validar contraseña
+        //validar contraseña no tenga menos de 8 digitos
         private void ValidarContraseña()
         {
             if (!(this.contraseña.Length > 8))
@@ -66,6 +67,7 @@ namespace Dominio
             }
         }
 
+        //publicar mensaje con el contenido de operador
         public override string ToString()
         {
             return $"{this.idUsuario} {this.email} {this.contraseña}";

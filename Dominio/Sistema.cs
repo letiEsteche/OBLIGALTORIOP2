@@ -18,6 +18,8 @@ namespace Dominio
         List<Huesped> huespedes = new List<Huesped>();
         List<string> erroresPrecarga = new List<string>(); //lista para guardar los errores de precarga
 
+
+        
         //SINGLETON
         public static Sistema Instancia
         {
@@ -52,14 +54,14 @@ namespace Dominio
             AltaProveedor(new Proveedor("", "22041120", "Agraciada 2512 Apto. 1", 8));
             AltaProveedor(new Proveedor("Norberto Molina", "", "Paraguay 2100", 9));
             AltaProveedor(new Proveedor("Norberto Molina", "22001189", "uruguay", 9));
-
+            
             AltaHuesped(new Huesped(Huesped.TipoDocumento.CI, "42970570", "Ana", "Gomez", "204", new DateTime(2023, 01, 21), Huesped.Fidelizacion.NIVEL1, "ss@asdf", "123456"));
-            AltaHuesped(new Huesped(Huesped.TipoDocumento.PASAPORTE, "48923692", "rosa", "rodriguez", "a202", new DateTime(2024, 01, 21), Huesped.Fidelizacion.NIVEL2, "ss@asdf", "123456"));
+            AltaHuesped(new Huesped(Huesped.TipoDocumento.PASAPORTE, "12345688", "Rosa", "Rodriguez", "a202", new DateTime(2024, 01, 21), Huesped.Fidelizacion.NIVEL2, "ss@asdf", "123456"));
             AltaHuesped(new Huesped(Huesped.TipoDocumento.OTROS, "12345672", "Ana", "Gomez", "204", new DateTime(2026, 01, 21), Huesped.Fidelizacion.NIVEL3, "ss@asdf", "123456"));
-            AltaHuesped(new Huesped(Huesped.TipoDocumento.CI, "12345688", "rosa", "rodriguez", "a202", new DateTime(2025, 01, 21), Huesped.Fidelizacion.NIVEL4, "ss@asdf", "123456"));
-            AltaHuesped(new Huesped(Huesped.TipoDocumento.PASAPORTE, "12345694", "Ana", "Gomez", "204", new DateTime(2023, 12, 21), Huesped.Fidelizacion.NIVEL1, "ss@asdf", "123456"));
-            AltaHuesped(new Huesped(Huesped.TipoDocumento.OTROS, "12345616", "rosa", "rodriguez", "a202", new DateTime(2024, 02, 21), Huesped.Fidelizacion.NIVEL2, "ss@asdf", "123456"));
-            AltaHuesped(new Huesped(Huesped.TipoDocumento.OTROS, "12345616", "rosa", "rodriguez", "a202", new DateTime(2024, 02, 21), Huesped.Fidelizacion.NIVEL2, "ss@asdf", "123456"));
+            AltaHuesped(new Huesped(Huesped.TipoDocumento.CI, "48923692", "Rosa", "Rodriguez", "a202", new DateTime(2025, 01, 21), Huesped.Fidelizacion.NIVEL4, "ss@asdf", "123456"));
+            AltaHuesped(new Huesped(Huesped.TipoDocumento.PASAPORTE, "12345", "Ana", "Gomez", "204", new DateTime(2023, 12, 21), Huesped.Fidelizacion.NIVEL1, "ss@asdf", "123456"));
+            AltaHuesped(new Huesped(Huesped.TipoDocumento.OTROS, "12345616", "Rosa", "Rodriguez", "a202", new DateTime(2024, 02, 21), Huesped.Fidelizacion.NIVEL2, "ss@asdf", "123456"));
+            AltaHuesped(new Huesped(Huesped.TipoDocumento.OTROS, "1234561655", "Rosa", "Rodriguez", "a202", new DateTime(2024, 02, 21), Huesped.Fidelizacion.NIVEL2, "ss@asdf", "123456"));
 
             AltaActividadHostal(new ActividadHostal("Rosa", "comedor", ActividadHostal.UbicacionActividad.INTERIOR, "Comida china", "Aprender recetas de comida china", new DateTime(2024, 02, 02), 10, 18, 0));
             AltaActividadHostal(new ActividadHostal("Karen", "jardín", ActividadHostal.UbicacionActividad.AIRE_LIBRE, "Yoga", "Hacer ejercicios de Yoga Kundalini", new DateTime(2024, 02, 02), 10, 18, 0));
@@ -72,7 +74,6 @@ namespace Dominio
             AltaActividadHostal(new ActividadHostal("Susana", "comedor", ActividadHostal.UbicacionActividad.INTERIOR, "Comida Mexicana", "Aprender recetas de comida mexicana", new DateTime(2024, 02, 02), 10, 18, 100));
             AltaActividadHostal(new ActividadHostal("Juan", "jardín", ActividadHostal.UbicacionActividad.AIRE_LIBRE, "Juego de mesa", "Campeonato de Truco", new DateTime(2024, 02, 02), 10, 18, 140));
             AltaActividadHostal(new ActividadHostal("Juan", "jardín", ActividadHostal.UbicacionActividad.AIRE_LIBRE, "Juego de mesa", "Campeonato de Ajedrez", new DateTime(2024, 02, 02), 10, 18, 1400));
-
 
             AltaActividadTercerizada(new ActividadTercearizada(proveedores[0], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2024, 06, 01), "Juego de mesa", "Jugar cartas", new DateTime(2024, 06, 01), 10, 18, 1050));
             AltaActividadTercerizada(new ActividadTercearizada(proveedores[0], ActividadTercearizada.ConfirmaEmpresa.SI, new DateTime(2024, 06, 01), "Juego de mesa", "Jugar ajedrez", new DateTime(2024, 06, 02), 10, 18, 400));
@@ -94,14 +95,14 @@ namespace Dominio
         }
 
 
-        //alta de proveedor para que cargue con la precarga que dio el profesor
+        //alta de proveedor para que cargue con la precarga que se dio en clase
         public void AltaProveedor(Proveedor proveedor)
         {
             try
             {
                 if (proveedor == null)
                 {
-                    throw new Exception("Proveedor nulo");
+                    throw new Exception("Proveedor nulo.");
                 }
                 proveedor.Validar();
                 VerificarProveedorNoExiste(proveedor);
@@ -117,24 +118,24 @@ namespace Dominio
         }
 
         //alta de huesped con precarga y para cargar un huesped por consola
-        public void AltaHuesped(Huesped huesped)
+        public bool AltaHuesped(Huesped huesped)
         {
             try
             {
                 if (huesped == null)
                 {
-                    throw new Exception("Huesped nulo");
+                    throw new Exception("Huesped nulo.");
                 }
-                huesped.ValidarHuesped();
+                huesped.Validar();
                 VerificarHuespedNoExiste(huesped);
                 Huespedes.Add(huesped);
-
+                return true;
             }
             catch (Exception ex)
             {
 
                 erroresPrecarga.Add("Ocurrio un error: " + ex.Message);
-
+                return false;
 
             }
         }
@@ -149,7 +150,7 @@ namespace Dominio
                 {
                     throw new Exception("Actividad nulo");
                 }
-                actividad.ValidarActividad();
+                actividad.Validar();
                 Actividades.Add(actividad);
             }
             catch (Exception ex)
@@ -162,6 +163,7 @@ namespace Dominio
 
         }
 
+        //Alta de actividad tercerizada
         public void AltaActividadTercerizada(ActividadTercearizada actividad)
         {
             try
@@ -170,7 +172,7 @@ namespace Dominio
                 {
                     throw new Exception("Actividad nula");
                 }
-                actividad.ValidarActividad();
+                actividad.Validar();
                 Actividades.Add(actividad);
 
             }
@@ -182,7 +184,7 @@ namespace Dominio
             }
         }
 
-
+        //Alta de operador
         public void AltaOperador(Operador operador)
         {
             try
@@ -192,7 +194,7 @@ namespace Dominio
                     throw new Exception("Actividad nula");
 
                 }
-                operador.ValidarOperador();
+                operador.Validar();
                 Operadores.Add(operador);
             }
             catch (Exception ex)
@@ -216,12 +218,13 @@ namespace Dominio
             }
         }
 
-        //verificar si ya existe huesped
+        //verificar si ya existe huesped comparando tipo de documento y numero
 
         public void VerificarHuespedNoExiste(Huesped huespedNew)
         {
             if (Huespedes.Contains(huespedNew))
             {
+                Console.WriteLine("Huesped ya existe");
                 throw new Exception("EN PRECARGA: Huesped ya existe");
             }
         }
@@ -249,15 +252,21 @@ namespace Dominio
 
         }
 
-        //listar listas de proveedor
+        //Listar listas de proveedor
         public void MostrarListaProveedores(string atributoOrden)
         {
-            
+           //Si se le pide que ordene por id
             if (atributoOrden.Equals("id"))
+                //El metodo sort ordena elementos de una lista, y la funcion lambda es el criterio de ordenamiento, en este caso por idProveedor
+                //Si el primer objeto es menor que el segundo devuelve un valor negativo, indica que el primer elemento debe ordenarse antes que el segundo
+                //Si el primer objeto es mayor que el segundo devuelve un valor positivo, indica que el primer elemento debe ordenarse despues que el segundo
+                //Si son iguales devuelve 0, por lo que son elementos iguales y no varian su orden 
                 Proveedores.Sort((proveedorAnterior, proveedorSiguiente) => proveedorAnterior.IdProveedor.CompareTo(proveedorSiguiente.IdProveedor));
+            //si se pide que ordene por nombre
             else if (atributoOrden.Equals("nombre"))
-                Proveedores.Sort();
+                Proveedores.Sort();//toma el compareTo para metodo de ordenamiento
 
+            //despues de ordenados los elementos de la lista, los imprime por pantalla.
             foreach (Proveedor unProveedor in Proveedores)
             {
                 Console.WriteLine(unProveedor.ToString());
@@ -284,29 +293,30 @@ namespace Dominio
         }
 
         // Cambiarle valor de promocion
+        //Le damos un IdProveedor y un nuevoPorcentaje para modificarlo
         public bool EstablecerValorPromoción(int unIdProveedor, int nuevoPorcentaje)
         {
-
+            //verifica que el porcentaje este entre 0 y 99
             if (!(nuevoPorcentaje < 99 && nuevoPorcentaje > 0))
             {
                 Console.WriteLine("El porcentaje no puede ser menor que 0 ni mayor que 100.");
                 return false;
             }
 
-
+            // Aca trae al proveedor obtenido por el numero de ID
             Proveedor provedorAModificar = ObtenerProveedorPorId(unIdProveedor);
-
+            //verifica que el proveedor no sea nulo
             if (provedorAModificar == null) {
                 Console.WriteLine("El proveedor no existe.");
                 return false;
             }
-
+            // Si el porcentaje es correcto y el proveedor existe modifica el porcentaje de descuento por el nuevoPorcentaje
             provedorAModificar.DescuentoParaTodaActividadTercearizada = nuevoPorcentaje;
             return true;
         }
 
         // Se usa para obtener el proveedor a partir de su id, y asi poder 'trabajar' con el objeto
-        // Al encontrarlo, hacemos break seguir buscando
+        // Al encontrarlo, hacemos break para no seguir buscando
         public Proveedor ObtenerProveedorPorId(int idBuscado)
         { 
             Proveedor proveedorEncontrado = null;
@@ -320,10 +330,6 @@ namespace Dominio
             }
             return proveedorEncontrado;
         }
-
-
-
-
 
 
     }

@@ -22,18 +22,7 @@
             Console.ReadLine();
 
 
-            //Operador operador = new Operador("juancarlos", "passwo");
-            //operador.Validar();
-            //Console.WriteLine(operador.Email);
-
-
-            //Operador operador = new Operador("leticia", "12345");
-            //Console.WriteLine(operador.ToString()); 
-
-            /* Si vamo a testear un objeto que requiere otros objetos, tenemos que instanciarlos primero
-            Actividad actividad = new Actividad("", "");
-            Huesped huesped = new Huesped("carlos");
-            Agenda agenda = new Agenda (huesped, actividad)*/
+            //MENU
             do
             {
                 //Console.Clear();
@@ -103,20 +92,29 @@
             Sistema unHues = Sistema.Instancia;
             try
             {
-                Huesped.TipoDocumento tipoDoc = PedirTipoDoc("Ingrese tipo de docmuento: CI, PASSAPORTE U OTROS: ");
+                Huesped.TipoDocumento tipoDoc = PedirTipoDoc("Ingrese tipo de docmuento: CI, PASAPORTE U OTROS: ");
                 string? nroDoc = PedirTexto("Ingrese numero de documento: ");
                 string? nombre = PedirTexto("Ingrese nombre: ");
                 string? apellido = PedirTexto("Ingrese apellido: ");
                 string? habitacion = PedirTexto("Ingrese habitación: ");
-                DateTime fechaNac = PedirFecha("Ingrese fecha de nacimiento: ");
+                DateTime fechaNac = PedirFecha("Ingrese fecha nacimiento (AAAA.MM.DD): ");
                 Huesped.Fidelizacion fidel = PedirFidel("Ingrese nivel de fidelización: NIVEL1, NIVEL2, NIVEL3 o NIVEL4: ");
                 string? email = PedirTexto("Ingrese mail: ");
                 string? pass = PedirTexto("Ingrese contraseña: ");
 
+                bool huespedValido = unHues.AltaHuesped(new Huesped(tipoDoc, nroDoc, nombre, apellido, habitacion, fechaNac, fidel, email, pass));
 
+                if (huespedValido)
+                {
+                    MensajeConfirmacion("Se ingresó el cliente correctamente");
+                }
+                else
+                {
+                    MensajeError("Cliente no fue agregado ");
+                }
+               
 
-                unHues.AltaHuesped(new Huesped(tipoDoc, nroDoc, nombre, apellido, habitacion, fechaNac, fidel, email, pass));
-                MensajeConfirmacion("Se ingresó el cliente correctamente");
+                
             }
             catch (Exception ex)
             {
@@ -215,6 +213,8 @@
 
             return valor;
         }
+
+      
 
         //Metodo para pedir y guardar opcion de enum Fidelizacion
         static Huesped.Fidelizacion PedirFidel(string mensaje = "Ingresar Fidelización")

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Channels;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public abstract class Actividad: IComparable<Actividad>
+    public abstract class Actividad: IComparable<Actividad>, Validable
     {
         //ATRIBUTOS
         static int ultimoNumero = 1;
@@ -53,7 +54,7 @@ namespace Dominio
 
         //VALIDACIONES
         //virtual significa que puedo usar esta validacion en las hijas
-        public virtual void ValidarActividad()
+        public virtual void Validar()
         {
             ValidarNombreActividad();
             ValidarDescripcionActividad();
@@ -62,22 +63,25 @@ namespace Dominio
 
         private void ValidarNombreActividad()
         {
-            if (!(this.nombreActividad != null && this.nombreActividad.Length < 25))
+            if (!(this.nombreActividad != "" && this.nombreActividad.Length < 25))
             {
                 throw new Exception("Nombre inválido");
             }
         }
 
+        // Descripcion no puede ser vacia
         private void ValidarDescripcionActividad()
         {
-            if (!(this.descripcionActividad != null))
+
+
+            if (!(this.descripcionActividad != ""))
             {
                 throw new Exception("Descripcion inválida");
             }
         }
 
-        //fecha debe ser mayor que el dia de la fecha
-        //se puede llamar desde agenda?
+        //valida que fecha de actividad debe ser mayor que el dia de la fecha
+        
         private void ValidarFecha()
         {
             if (!(this.fechaDeActividad > DateTime.Today))
@@ -85,8 +89,6 @@ namespace Dominio
                 throw new Exception("Fecha inválida");
             }
         }
-
-
 
 
         public bool VerificarSiHayCuposLibres()
@@ -106,6 +108,8 @@ namespace Dominio
             this.cuposDisponibles--;
         }
 
+
+        //retorna mensaje de actividad
         public override string ToString()
         {
           
@@ -113,6 +117,7 @@ namespace Dominio
         }
 
         //este comparTO me sirve para utilizar el sort en el orden por costo
+        //compara el valor de costo por person con el valor de costo por persona de la otra actividad
         public int CompareTo(Actividad actividad)
         {
             return this.costoPorPersona.CompareTo(actividad.costoPorPersona);

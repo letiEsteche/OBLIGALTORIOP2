@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Proveedor: IComparable<Proveedor>
+    public class Proveedor: IComparable<Proveedor>, Validable
     {
         private static int cuentaProveedor = 0;
         int idProveedor;

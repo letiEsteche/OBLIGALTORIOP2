@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class ActividadHostal : Actividad
+    public class ActividadHostal : Actividad, Validable
     {
         public enum UbicacionActividad {AIRE_LIBRE, INTERIOR };
         string personaResponsable;
@@ -28,12 +28,13 @@ namespace Dominio
           
         }
 
-        public override void ValidarActividad()
+        public override void Validar()
         {
-            base.ValidarActividad(); //llama a la validacion de actividad con el virtual que puse en Validacion Actividad
+            base.Validar(); //llama a la validacion de actividad con el virtual que puse en Validacion Actividad
             ValidarNombre(); //llama a validacion de hostal
         }
 
+        //verifica que nombre de responsable de hostel no sea vacio
 
         private void ValidarNombre()
         {
@@ -45,7 +46,7 @@ namespace Dominio
 
       
 
-        //descuento de hostal que le corresponde a cada huesped segun su fidelizacion
+        //Desceutno dee hostal que le corresponde a cada huesped segun su fidelizacion
         public decimal DescuentoHostal(string nivelHuesped)
         {
             decimal descuento = 0;
