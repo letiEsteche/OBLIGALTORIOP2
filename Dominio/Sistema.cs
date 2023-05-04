@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dominio
+﻿namespace Dominio
 {
     public class Sistema
     {
+        #region Atributos
+
         private static Sistema instancia;
 
         List<Actividad> actividades = new List<Actividad>();
@@ -17,8 +12,10 @@ namespace Dominio
         List<Operador> operadores = new List<Operador>();
         List<Huesped> huespedes = new List<Huesped>();
         List<string> erroresPrecarga = new List<string>(); //lista para guardar los errores de precarga
-        
-        //SINGLETON
+
+        #endregion
+
+        #region Sinlgeton
         public static Sistema Instancia
         {
             get
@@ -31,6 +28,10 @@ namespace Dominio
             }
         }
 
+        #endregion
+
+        #region Propiedades
+
         public List<Actividad> Actividades { get => actividades; set => actividades = value; }
         public List<Proveedor> Proveedores { get => proveedores; set => proveedores = value; }
         public List<Agenda> Agendas { get => agendas; set => agendas = value; }
@@ -38,9 +39,12 @@ namespace Dominio
         public List<Huesped> Huespedes { get => huespedes; set => huespedes = value; }
         public List<string> ErroresPrecarga { get => erroresPrecarga; }
 
+        #endregion
+
+        #region Precargas
+
         private Sistema()
         {
-            //TODAS LAS PRECARGAS
             AltaProveedor(new Proveedor("DreamWorks S.R.L.", "23048549", "Suarez 3380 Apto 304", 10));
             AltaProveedor(new Proveedor("Estela Umpierrez S.A.", "33459678", "Lima 2456", 7));
             AltaProveedor(new Proveedor("TravelFun", "29152020", "Misiones 1140", 9));
@@ -91,7 +95,9 @@ namespace Dominio
 
 
         }
+        #endregion
 
+        #region Métodos
 
         //alta de proveedor para que cargue con la precarga que se dio en clase
         public void AltaProveedor(Proveedor proveedor)
@@ -229,9 +235,11 @@ namespace Dominio
 
 
         //guarda en una lista actividades entre fechas dadas y un costo mayor dado
-        public void ListarActividadMayorACostoYEntreFechas(DateTime fechaInicio, DateTime fechaFin, int costoDato)
-        {
+        
 
+        public List<Actividad> ListarActividadMayorACostoYEntreFechas(DateTime fechaInicio, DateTime fechaFin, int costoDato)
+        {
+            List<Actividad> listaAuxiliar = new List<Actividad>();
             Actividades.Sort();
             Actividades.Reverse();
 
@@ -241,13 +249,14 @@ namespace Dominio
                 {
                     if (unaActividad.CostoPorPersona.CompareTo(costoDato) >= 0)
                     {
-                        Console.WriteLine(unaActividad.ToString());
+                        listaAuxiliar.Add(unaActividad);
                     }
 
                 }
 
             }
 
+            return listaAuxiliar;
         }
 
         //Listar listas de proveedor
@@ -329,6 +338,7 @@ namespace Dominio
             return proveedorEncontrado;
         }
 
+        #endregion
 
     }
 }

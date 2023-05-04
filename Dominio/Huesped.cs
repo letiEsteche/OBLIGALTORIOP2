@@ -8,9 +8,10 @@ using static Dominio.Huesped;
 
 namespace Dominio
 {
-    public class Huesped : Operador , Validable
+    public class Huesped : Operador
     {
-        //ATRIBUTOS:
+        #region Atributos
+
         public enum TipoDocumento { CI, PASAPORTE, OTROS };
         public enum Fidelizacion { NIVEL1, NIVEL2, NIVEL3, NIVEL4 };
         TipoDocumento documento;
@@ -21,7 +22,9 @@ namespace Dominio
         DateTime fechaNacimiento;
         Fidelizacion nroFidelizacion;
 
+        #endregion
 
+        #region Propiedad
 
         public TipoDocumento Documento { get => documento; set => documento = value; }
         public string? NumeroDocumento { get => numeroDocumento; set => numeroDocumento = value; }
@@ -31,6 +34,9 @@ namespace Dominio
         public DateTime FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
         public Fidelizacion NroFidelizacion { get => nroFidelizacion; set => nroFidelizacion = value; }
 
+        #endregion
+
+        #region Constructores
 
         public Huesped() { }
         public Huesped(TipoDocumento documento, string numeroDocumento, string nombreHuesped, string apellidoHuesped, string habitacionHuesped, DateTime fechaNacimiento, Fidelizacion nroFidelizacion, string email, string contraseña) : base(email, contraseña)
@@ -45,7 +51,11 @@ namespace Dominio
 
         }
 
-        //VERIFICACIONES DE HUESPED
+        #endregion
+
+
+        #region Métodos
+
         public void Validar()
         {
             VerificarNombreHuesped();
@@ -181,8 +191,8 @@ namespace Dominio
 
         }
 
-      
 
+        #endregion
 
     }
 

@@ -10,7 +10,8 @@ namespace Dominio
 {
     public abstract class Actividad: IComparable<Actividad>, Validable
     {
-        //ATRIBUTOS
+        #region Atributos
+
         static int ultimoNumero = 1;
         int idActividad;
         string? nombreActividad;
@@ -23,7 +24,10 @@ namespace Dominio
 
         List<Agenda> agendas = new List<Agenda>();
 
-        //PROPIEDADES
+        #endregion
+
+        #region Propiedades
+
         public static int UltimoNumero { get => ultimoNumero; }
         public int IdActividad { get => idActividad; set => idActividad = value; }
         public string? NombreActividad { get => nombreActividad; set => nombreActividad = value; }
@@ -34,8 +38,9 @@ namespace Dominio
         public decimal CostoPorPersona { get => costoPorPersona; set => costoPorPersona = value; }
         public int CuposDisponibles { get => cuposDisponibles; set => cuposDisponibles = value; }
 
+        #endregion
 
-        //CONSTRUCTORES
+        #region Constructores
 
         public Actividad() { }
 
@@ -52,7 +57,10 @@ namespace Dominio
 
         }
 
-        //VALIDACIONES
+        #endregion
+
+        #region Validaciones
+
         //virtual significa que puedo usar esta validacion en las hijas
         public virtual void Validar()
         {
@@ -102,6 +110,9 @@ namespace Dominio
                 return false;
             }
         }
+        #endregion
+
+        #region Metodos
 
         public void RestarCupoDeCupoDisponible()
         {
@@ -123,6 +134,7 @@ namespace Dominio
             return this.costoPorPersona.CompareTo(actividad.costoPorPersona);
         }
 
+        #endregion
 
     }
 }

@@ -338,11 +338,26 @@
 
         static public void ListarActividadEntreFechas()
         {
+
             Sistema unS = Sistema.Instancia;
-            DateTime fechaInicio = PedirFecha("Ingrese fecha desde: ");
-            DateTime fechaFin = PedirFecha("Ingrese fecha hasta: ");
+            DateTime fechaInicio = PedirFecha("Ingrese fecha desde (AAAA.MM.DD): ");
+            DateTime fechaFin = PedirFecha("Ingrese fecha hasta (AAAA.MM.DD): ");
             int costoDato = PedirCosto("Ingrese un costo: ");
-            unS.ListarActividadMayorACostoYEntreFechas(fechaInicio, fechaFin, costoDato);
+            List<Actividad> auxLista = unS.ListarActividadMayorACostoYEntreFechas(fechaInicio, fechaFin, costoDato);
+
+            if (auxLista.Count > 0)
+            {
+                foreach (Actividad unaA in auxLista)
+                {
+                    Console.WriteLine(unaA.ToString());
+                }
+
+             }
+            else
+            {
+                MensajeError("La solicitud no genero resultados");
+            }
+
             ConfirmacionLectura();
         }
 

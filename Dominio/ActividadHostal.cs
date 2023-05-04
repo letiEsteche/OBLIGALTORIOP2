@@ -8,16 +8,23 @@ namespace Dominio
 {
     public class ActividadHostal : Actividad
     {
+        #region Atributos
         public enum UbicacionActividad {AIRE_LIBRE, INTERIOR };
         string personaResponsable;
         string lugarEnHostel;
         UbicacionActividad dondeEsActividad;
 
+        #endregion
 
+        #region Propiedades
 
         public string PersonaResponsable { get => personaResponsable; set => personaResponsable = value; }
         public string LugarEnHostel { get => lugarEnHostel; set => lugarEnHostel = value; }
         public UbicacionActividad DondeEsActividad { get => dondeEsActividad; set => dondeEsActividad = value; }
+
+        #endregion
+
+        #region Constructor
 
         public ActividadHostal(string personaResponsable, string lugarEnHostel, UbicacionActividad dondeEsActividad, string nombreActividad, string descripcionActividad, DateTime fechaDeActividad, int cantMaxPersonas, int edadMinimaParaActividad, decimal costoPorPersona): base (nombreActividad, descripcionActividad, fechaDeActividad, cantMaxPersonas, edadMinimaParaActividad, costoPorPersona)
         {
@@ -27,6 +34,9 @@ namespace Dominio
              
           
         }
+        #endregion
+
+        #region Validaciones
 
         public override void Validar()
         {
@@ -44,8 +54,9 @@ namespace Dominio
             }
         }
 
-      
+        #endregion
 
+        #region Metodo
         //Desceutno dee hostal que le corresponde a cada huesped segun su fidelizacion
         public decimal DescuentoHostal(string nivelHuesped)
         {
@@ -66,14 +77,7 @@ namespace Dominio
             return descuento;
         }
 
-
-
-
-        //public override string ToString()
-        //{
-
-        //    return $" Responsable: {this.personaResponsable} Lugar: {this.lugarEnHostel} {this.dondeEsActividad}";
-        //}
+        #endregion
 
     }
 }

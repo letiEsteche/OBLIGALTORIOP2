@@ -8,20 +8,27 @@ namespace Dominio
 {
     public class Proveedor: IComparable<Proveedor>, Validable
     {
+        #region Atributos 
+
         private static int cuentaProveedor = 0;
         int idProveedor;
         string? nombreProveedor;
         string? telefonoProveedor;
         string? direccionProveedor;
         int descuentoParaTodaActividadTercearizada;
+        #endregion
 
-        
+        #region Propiedades 
+
         public string? NombreProveedor { get => nombreProveedor; set => nombreProveedor = value; }
         public string? TelefonoProveedor { get => telefonoProveedor; set => telefonoProveedor = value; }
         public string? DireccionProveedor { get => direccionProveedor; set => direccionProveedor = value; }
         public int DescuentoParaTodaActividadTercearizada { get => descuentoParaTodaActividadTercearizada; set => descuentoParaTodaActividadTercearizada = value; }
         public static int CuentaProveedor { get => cuentaProveedor; }
         public int IdProveedor { get => idProveedor; set => idProveedor = value; }
+        #endregion
+
+        #region Constructores 
 
         public Proveedor() { }
         public Proveedor(string? nombreProveedor, string? telefonoProveedor, string? direccionProveedor, int descuentoParaTodaActividadTercearizada)
@@ -32,6 +39,9 @@ namespace Dominio
             this.descuentoParaTodaActividadTercearizada = descuentoParaTodaActividadTercearizada;
             this.IdProveedor = cuentaProveedor++;
         }
+        #endregion
+
+        #region Métodos 
 
         public void Validar()
         {
@@ -99,7 +109,7 @@ namespace Dominio
             return $"{this.IdProveedor} {this.nombreProveedor}, Telefono: {this.telefonoProveedor}, Direccion: {this.direccionProveedor} Descuento: {this.descuentoParaTodaActividadTercearizada}";
         }
 
-
+        #endregion
 
     }
 }

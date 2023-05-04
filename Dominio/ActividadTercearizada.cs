@@ -8,16 +8,24 @@ namespace Dominio
 {
     public class ActividadTercearizada:Actividad
     {
+        #region Atributos 
+
         public enum ConfirmaEmpresa { SI, NO };
         Proveedor proveedor;
         DateTime fechaConfirmacion;
         ConfirmaEmpresa confirmacionEmpresa;
 
-       
-        
+        #endregion
+
+        #region Propiedades 
+
         public DateTime FechaConfirmacion { get => fechaConfirmacion; set => fechaConfirmacion = value; }
         public ConfirmaEmpresa ConfirmacionEmpresa1 { get => confirmacionEmpresa; set => confirmacionEmpresa = value; }
         public Proveedor Proveedor { get => proveedor; set => proveedor = value; }
+
+        #endregion
+
+        #region Constructores
 
         public ActividadTercearizada(Proveedor proveedor,  ConfirmaEmpresa confirmacionEmpresa, DateTime fechaConfirmacion, string nombreActividad, string descripcionActividad, DateTime fechaDeActividad, int cantMaxPersonas, int edadMinimaParaActividad, decimal costoPorPersona) : base(nombreActividad, descripcionActividad, fechaDeActividad, cantMaxPersonas, edadMinimaParaActividad, costoPorPersona)
         {
@@ -33,14 +41,7 @@ namespace Dominio
            
         }
 
-
-        //public override string ToString()
-        //{
-
-        //    return $" {this.confirmacionEmpresa} {this.fechaConfirmacion.ToShortDateString()} PROVEEDOR: { this.proveedor}";
-
-        //}
-
+        #endregion
 
     }
 }

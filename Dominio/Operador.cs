@@ -8,17 +8,25 @@ namespace Dominio
 {
     public class Operador: Validable
     {
+        #region Atributos
+
         private static int ultimoNumero = 1;
         int idUsuario;
         string? email;
         string? contraseña;
-        
+
+        #endregion
+
+        #region Propiedades
 
         public static int UltimoNumero { get => ultimoNumero; }
         public string? Email { get => email; set => email = value; }
         public string? Contraseña { get => contraseña; set => contraseña = value; }
         public int IdUsuario { get => idUsuario; set => idUsuario = value; }
-        
+
+        #endregion
+
+        #region Constructores
 
         public Operador() { }
 
@@ -30,7 +38,9 @@ namespace Dominio
 
         }
 
+        #endregion
 
+        #region Métodos
 
         public void Validar()
         {
@@ -72,10 +82,7 @@ namespace Dominio
         {
             return $"{this.idUsuario} {this.email} {this.contraseña}";
         }
-
+        #endregion
     }
-
-
-
 
 }
